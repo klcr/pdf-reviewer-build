@@ -28,6 +28,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GH_PAT }}  # 個人アクセストークン
-          external_repository: klcr/pdf-reviewer-app # パブリックリポジトリ
+          external_repository: klcr/pdf-reviewer-build # パブリックリポジトリ
           publish_branch: main  # 公開用ブランチ
           publish_dir: ./build  # ビルド成果物のディレクトリ
