@@ -1,10 +1,12 @@
 name: Deploy to GitHub Pages
 
-
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -12,11 +14,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Deploy to GitHub Pages repository
-        uses: peaceiris/actions-gh-pages@v3
         with:
+          persist-credentials: false
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
+          branch: gh-pages
           personal_token: ${{ secrets.GH_PAT }}  # 個人アクセストークン
           external_repository: klcr/pdf-reviewer-build # パブリックリポジトリ
-          publish_branch: main  # 公開用ブランチ
-          publish_dir: ./build  # ビルド成果物のディレクトリ
+          clean: true
